@@ -1,7 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+
+// Définition du thème
+const theme = {
+  colors: {
+    primary: "#FF0000",  // Rouge
+    secondary: "#282D30", // Gris foncé
+    tertiary: "#FBFBFB",  // Blanc
+    text: "#000000",      // Noir
+  },
+};
 
 // Styled container for the app layout
 const AppContainer = styled.div`
@@ -16,11 +26,13 @@ const AppContainer = styled.div`
  */
 const App = () => {
   return (
-    <AppContainer>
-      <Routes>
-        <Route path="/profile/:userId" element={<ProfilePage />} />
-      </Routes>
-    </AppContainer>
+    <ThemeProvider theme={theme}> {/* ✅ ThemeProvider ajouté ici */}
+      <AppContainer>
+        <Routes>
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+        </Routes>
+      </AppContainer>
+    </ThemeProvider>
   );
 };
 
