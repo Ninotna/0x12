@@ -7,6 +7,8 @@ import Statistics from "../components/Statistics";
 import ActivityChart from "../components/ActivityChart";
 import ScoreChart from "../components/ScoreChart";
 import PerformanceRadarChart from "../components/RadarChart";
+import AverageSessionsChart from "../components/AverageSessionsChart";
+
 
 // Styled container for the profile page
 const PageContainer = styled.div`
@@ -55,6 +57,7 @@ const ProfilePage = () => {
     <PageContainer>
       <ProfileHeader firstName={userData.userInfos.firstName} />
       <ChartsContainer>
+      <AverageSessionsChart userId={userId} />
         <ActivityChart data={userData.activity} />
         <Statistics data={userData.keyData} />
       </ChartsContainer>
