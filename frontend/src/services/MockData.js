@@ -1,27 +1,4 @@
-/**
- * @typedef {Object} UserInfo
- * @property {string} firstName - Prénom de l'utilisateur
- * @property {string} lastName - Nom de l'utilisateur
- * @property {number} age - Âge de l'utilisateur
- */
-
-/**
- * @typedef {Object} KeyData
- * @property {number} calorieCount - Nombre de calories consommées
- * @property {number} proteinCount - Nombre de protéines consommées
- * @property {number} carbohydrateCount - Nombre de glucides consommés
- * @property {number} lipidCount - Nombre de lipides consommés
- */
-
-/**
- * @typedef {Object} UserMainData
- * @property {number} id - Identifiant de l'utilisateur
- * @property {UserInfo} userInfos - Informations de l'utilisateur
- * @property {number} todayScore - Score du jour de l'utilisateur
- * @property {KeyData} keyData - Données nutritionnelles clés
- */
-
-/** @type {UserMainData[]} */
+// Importation des données statiques (mock)
 const USER_MAIN_DATA = [
   {
       id: 12,
@@ -45,7 +22,7 @@ const USER_MAIN_DATA = [
           lastName: 'Ratorez',
           age: 34,
       },
-      score: 0.3,
+      todayScore: 0.3,
       keyData: {
           calorieCount: 2500,
           proteinCount: 90,
@@ -55,20 +32,6 @@ const USER_MAIN_DATA = [
   }
 ];
 
-/**
-* @typedef {Object} ActivitySession
-* @property {string} day - Date de la session
-* @property {number} kilogram - Poids de l'utilisateur
-* @property {number} calories - Calories dépensées
-*/
-
-/**
-* @typedef {Object} UserActivity
-* @property {number} userId - Identifiant de l'utilisateur
-* @property {ActivitySession[]} sessions - Liste des sessions d'activité
-*/
-
-/** @type {UserActivity[]} */
 const USER_ACTIVITY = [
   {
       userId: 12,
@@ -96,19 +59,6 @@ const USER_ACTIVITY = [
   }
 ];
 
-/**
-* @typedef {Object} AverageSession
-* @property {number} day - Jour de la semaine (1 à 7)
-* @property {number} sessionLength - Durée de la session en minutes
-*/
-
-/**
-* @typedef {Object} UserAverageSessions
-* @property {number} userId - Identifiant de l'utilisateur
-* @property {AverageSession[]} sessions - Liste des sessions moyennes
-*/
-
-/** @type {UserAverageSessions[]} */
 const USER_AVERAGE_SESSIONS = [
   {
       userId: 12,
@@ -136,20 +86,6 @@ const USER_AVERAGE_SESSIONS = [
   }
 ];
 
-/**
-* @typedef {Object} PerformanceData
-* @property {number} value - Valeur de la performance
-* @property {number} kind - Type de performance (1 à 6)
-*/
-
-/**
-* @typedef {Object} UserPerformance
-* @property {number} userId - Identifiant de l'utilisateur
-* @property {Object<number, string>} kind - Correspondance entre ID et type de performance
-* @property {PerformanceData[]} data - Données de performance
-*/
-
-/** @type {UserPerformance[]} */
 const USER_PERFORMANCE = [
   {
       userId: 12,
@@ -192,10 +128,42 @@ const USER_PERFORMANCE = [
 ];
 
 /**
-* Exportation des données mockées
-* @module MockData
+* Fonction pour récupérer les données utilisateur mockées
+* @param {number} userId - L'ID de l'utilisateur
+* @returns {Object|null} Données utilisateur ou null
 */
-module.exports = {
+export function getMockUserData(userId) {
+  return USER_MAIN_DATA.find((user) => user.id === userId) || null;
+}
+
+/**
+* Fonction pour récupérer les activités utilisateur mockées
+* @param {number} userId - L'ID de l'utilisateur
+* @returns {Object|null} Activité utilisateur ou null
+*/
+export function getMockUserActivity(userId) {
+  return USER_ACTIVITY.find((activity) => activity.userId === userId) || null;
+}
+
+/**
+* Fonction pour récupérer les sessions moyennes mockées
+* @param {number} userId - L'ID de l'utilisateur
+* @returns {Object|null} Sessions moyennes ou null
+*/
+export function getMockUserAverageSessions(userId) {
+  return USER_AVERAGE_SESSIONS.find((session) => session.userId === userId) || null;
+}
+
+/**
+* Fonction pour récupérer les performances utilisateur mockées
+* @param {number} userId - L'ID de l'utilisateur
+* @returns {Object|null} Données de performance ou null
+*/
+export function getMockUserPerformance(userId) {
+  return USER_PERFORMANCE.find((performance) => performance.userId === userId) || null;
+}
+
+export {
   USER_MAIN_DATA,
   USER_ACTIVITY,
   USER_AVERAGE_SESSIONS,
