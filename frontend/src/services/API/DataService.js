@@ -34,7 +34,7 @@ const DataService = {
   getUserActivity: async (userId) => {
     try {
       if (useMockData) {
-        console.log("Utilisation des données mockées pour l'activité de l'utilisateur", userId);
+        // console.log("Utilisation des données mockées pour l'activité de l'utilisateur", userId);
         return await getMockUserActivity(userId);
       }
       console.log("Requête API pour l'activité de l'utilisateur", userId);
@@ -54,10 +54,10 @@ const DataService = {
   getUserAverageSessions: async (userId) => {
     try {
       if (useMockData) {
-        console.log("Utilisation des données mockées pour les sessions moyennes de l'utilisateur", userId);
+        // console.log("Utilisation des données mockées pour les sessions moyennes de l'utilisateur", userId);
         return await getMockUserAverageSessions(userId);
       }
-      console.log("Requête API pour les sessions moyennes de l'utilisateur", userId);
+      // console.log("Requête API pour les sessions moyennes de l'utilisateur", userId);
       const response = await axios.get(`${API_URL}/user/${userId}/average-sessions`);
       return response.data;
     } catch (error) {
@@ -74,10 +74,10 @@ const DataService = {
   getUserPerformance: async (userId) => {
     try {
       if (useMockData) {
-        console.log("Utilisation des données mockées pour la performance de l'utilisateur", userId);
+        // console.log("Utilisation des données mockées pour la performance de l'utilisateur", userId);
         return await getMockUserPerformance(userId);
       }
-      console.log("Requête API pour la performance de l'utilisateur", userId);
+      // console.log("Requête API pour la performance de l'utilisateur", userId);
       const response = await axios.get(`${API_URL}/user/${userId}/performance`);
       return response.data;
     } catch (error) {
