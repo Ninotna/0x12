@@ -1,0 +1,58 @@
+.keyDatas {
+  &__nutrition {
+    width: 258px;
+    height: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    &--cards {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      .nutrition__card {
+        width: 258px;
+        height: 124px;
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        border-radius: $border-rad;
+        background-color: $colour-bgLight;
+        &--iconCalorie {
+          @include keyDataIconCalorie;
+        }
+        &--iconProtein {
+          @include keyDataIconProtein;
+        }
+        &--iconCarb {
+          @include keyDataIconCarb;
+        }
+        &--iconFat {
+          @include keyDataIconFat;
+        }
+        &--detail {
+          height: 60px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          margin: 0;
+        }
+        &--count {
+          font-size: 20px;
+          font-weight: 600;
+          margin: 0px;
+        }
+        &--type {
+          font-size: 14px;
+          font-weight: 600;
+          color: $colour-tertiary;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
