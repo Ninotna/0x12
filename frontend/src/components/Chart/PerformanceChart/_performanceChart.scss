@@ -1,0 +1,21 @@
+.chart {
+  &__activity {
+    &--performance {
+      width: 258px;
+      height: 263px;
+      margin: 0px;
+
+      // background-color: $colour-secondary;
+    }
+  }
+  &__performance {
+    width: 100%;
+    height: 100%;
+    border-radius: $border-rad;
+    background-color: $colour-secondary;
+    tspan {
+      font-size: 10px;
+      font-weight: 400;
+    }
+  }
+}
