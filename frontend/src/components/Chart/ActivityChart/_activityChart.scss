@@ -1,0 +1,67 @@
+.chart {
+  &__dailyActivity {
+    width: 835px;
+    height: 320px;
+    .dailyActivity {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-radius: $border-rad;
+      background-color: rgba(0, 0, 0, 0.02);
+      &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0px;
+        padding: 35px 25px 35px 25px;
+        &--title {
+          margin: 0px;
+          h3 {
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+        &--caption {
+          display: flex;
+          font-size: 15px;
+          font-weight: 500;
+          margin: 0px;
+          // gap: 30px;
+        }
+        &--captionDotKg {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          margin-right: 15px;
+          background-color: #282d30;
+        }
+        &--captionDotCal {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          margin-right: 15px;
+          background-color: #e60000;
+        }
+        &--captionNameKg {
+          margin-right: 40px;
+        }
+      }
+      &__barChart {
+        width: 100%;
+        height: 100%;
+        &--toolType {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          padding: 10px;
+          font-size: 10px;
+          color: #fff;
+          background-color: #e60000;
+        }
+      }
+    }
+  }
+}
