@@ -43,10 +43,17 @@ const TooltipContainer = styled.div`
 `;
 
 // Tooltip personnalisé
-const CustomToolTip = ({ active, payload }) =>
-  active && payload ? (
-    <TooltipContainer>{`${payload[0].value} min`}</TooltipContainer>
-  ) : null;
+function CustomToolTip({ active, payload }) {
+  if (!active || !payload || !payload.length || !payload[0]?.value) {
+    return null;
+  }
+
+  return (
+    <div className="averageSessions__chart--toolTipText">
+      {`${payload[0].value} min`}
+    </div>
+  );
+}
 
 CustomToolTip.propTypes = {
   active: PropTypes.bool,
@@ -77,7 +84,7 @@ export default function AverageSessionsChart({ userId }) {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const data = await DataService.getAverageSessions(userId);
+        const data = await DataService.getUserAverageSessions(userId);
         if (data) {
           setSessions(data);
         } else {
