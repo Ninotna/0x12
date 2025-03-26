@@ -1,0 +1,41 @@
+@mixin home-btn {
+  width: 150px;
+  border: 2px solid $colour-tertiary;
+  border-radius: $border-rad;
+  font-size: 1.3rem;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: $colour-primary;
+  }
+}
+
+@mixin keyDataIcon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px;
+  border-radius: $border-rad;
+}
+
+@mixin keyDataIconCalorie {
+  @include keyDataIcon;
+  background-color: rgba(255, 205, 205, 0.715);
+}
+
+@mixin keyDataIconProtein {
+  @include keyDataIcon;
+  background-color: rgba(55, 138, 220, 0.137);
+}
+
+@mixin keyDataIconCarb {
+  @include keyDataIcon;
+  background-color: rgba(246, 215, 41, 0.134);
+}
+
+@mixin keyDataIconFat {
+  @include keyDataIcon;
+  background-color: rgba(255, 205, 205, 0.715);
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import '../styles/utils/variables';
+@import '../styles/utils/mixins';
+@import '../components/Loader/loader';
+@import './bases/base', './bases/typo';
+@import '../components/Header/header';
+@import '../components/Banner/banner';
+@import '../components/Aside/aside';
+@import '../components/KeyDatas/keydatas';
+@import '../components/Chart/DailyScoreChart/dailyScoreChart';
+@import '../components/Chart/PerformanceChart/performanceChart';
+@import '../components/Chart/AverageSessionsChart/averageSessionsChart';
+@import '../components/Chart/ActivityChart/activityChart';
+@import '../pages/UnderConstruction/underConstruction';
+@import '../pages/404/404';
+@import '../pages/Home/home';
+@import '../pages/Dashboard/dashboard';
