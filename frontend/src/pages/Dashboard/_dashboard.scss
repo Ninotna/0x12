@@ -1,0 +1,50 @@
+.dashboard {
+  width: 100%;
+  display: flex;
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0px;
+    padding: 50px;
+  }
+
+  &__datas {
+    display: flex;
+    gap: 40px;
+    &--charts {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin: 0px;
+      .chart {
+        // &__activity {
+        //   width: 835px;
+        //   height: 320px;
+        //   background-color: $colour-tertiary;
+        // }
+        &__activityDetails {
+          width: 835px;
+          height: 320px;
+          // background-color: $colour-tertiary;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          // &--averageSessions {
+          //   width: 258px;
+          //   height: 263px;
+          //   margin: 0px;
+          //   background-color: $colour-secondary;
+          // }
+          // &--performance {
+          //   width: 258px;
+          //   height: 263px;
+          //   margin: 0px;
+          //   background-color: $colour-secondary;
+          // }
+        }
+      }
+    }
+  }
+}
