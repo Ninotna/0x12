@@ -1,39 +1,26 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import ProfilePage from "./pages/ProfilePage";
-import styled, { ThemeProvider } from "styled-components";
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Header from './components/Header/Header'
+import Dashboard from './pages/Dashboard/Dashboard'
+import Error404 from './pages/404/Error404'
+import 'normalize.css'
+import './styles/style.scss'
 
-// Définition du thème
-const theme = {
-  colors: {
-    primary: "#FF0000",  // Rouge
-    secondary: "#282D30", // Gris foncé
-    tertiary: "#FBFBFB",  // Blanc
-    text: "#000000",      // Noir
-  },
-};
-
-// Styled container for the app layout
-const AppContainer = styled.div`
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-`;
-
-/**
- * Composant principal de l'application SportSee
- * @returns {JSX.Element}
- */
-const App = () => {
+function App() {
   return (
-    <ThemeProvider theme={theme}> {/* ✅ ThemeProvider ajouté ici */}
-      <AppContainer>
-        <Routes>
-          <Route path="/profile/:userId" element={<ProfilePage />} />
-        </Routes>
-      </AppContainer>
-    </ThemeProvider>
-  );
-};
-
-export default App;
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/user/:id" element={<Dashboard />} />
+        <Route path="/profil" element={<Error404 />} />
+        <Route path="/setting" element={<Error404 />} />
+        <Route path="/community" element={<Error404 />} />
+        <Route path="/user" element={<Error404 />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+export default App
