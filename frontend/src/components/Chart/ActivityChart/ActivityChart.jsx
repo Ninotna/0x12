@@ -23,30 +23,39 @@ export default function ActivityChart({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchData()
 		{
-			try {
-				const result = await DataService.getUserActivity(userId)
-				if (result && result.sessions) {
-					const formattedData = result.sessions.map((session, index) => ({
-						day: index + 1,
-						kilogram: session.kilogram,
-						calories: session.calories,
-					}))
-					setData(formattedData)
-				} else {
-					throw new Error('Aucune donnée reçue')
+			async function fetchData()
+			{
+				try {
+					console.log("📡 Récupération de l'activité pour l'utilisateur", userId)
+					const result = await DataService.getUserActivity(userId)
+					console.log("📦 Données récupérées :", result)
+		
+					if (result && result.data && result.data.sessions) {
+						const formattedData = result.data.sessions.map((session, index) => ({
+							day: index + 1,
+							kilogram: session.kilogram,
+							calories: session.calories,
+						}))
+						console.log("📊 Données formatées :", formattedData)
+						setData(formattedData)
+					} else {
+						console.error("❌ Structure inattendue :", result)
+						throw new Error('Aucune donnée reçue')
+					}
 				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
+				catch (err) {
+					console.error("❌ Erreur dans fetchData :", err)
+					setError(err)
+				}
+				finally {
+					setIsLoading(false)
+				}
 			}
-		}
-
-		fetchData()
-	}, [userId])
+		
+			fetchData()
+		}, [userId])
+		
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
