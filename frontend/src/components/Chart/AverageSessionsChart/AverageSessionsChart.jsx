@@ -23,30 +23,39 @@ export default function AverageSessionsChart({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchData()
 		{
-			try {
-				const result = await DataService.getUserAverageSessions(userId)
-				if (result && result.sessions) {
-					const dayMap = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
-					const formattedData = result.sessions.map((s, i) => ({
-						day: dayMap[i],
-						sessionLength: s.sessionLength,
-					}))
-					setData(formattedData)
-				} else {
-					throw new Error('Aucune donnée reçue')
+			async function fetchData()
+			{
+				try {
+					console.log("📡 Récupération des sessions moyennes pour l'utilisateur", userId)
+					const result = await DataService.getUserAverageSessions(userId)
+					console.log("📦 Données récupérées :", result)
+		
+					if (result && result.data && result.data.sessions) {
+						const dayMap = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+						const formattedData = result.data.sessions.map((s, i) => ({
+							day: dayMap[i],
+							sessionLength: s.sessionLength,
+						}))
+						console.log("📊 Données formatées :", formattedData)
+						setData(formattedData)
+					} else {
+						console.error("❌ Structure inattendue :", result)
+						throw new Error('Aucune donnée reçue')
+					}
 				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
+				catch (err) {
+					console.error("❌ Erreur dans fetchData :", err)
+					setError(err)
+				}
+				finally {
+					setIsLoading(false)
+				}
 			}
-		}
-
-		fetchData()
-	}, [userId])
+		
+			fetchData()
+		}, [userId])
+		
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
