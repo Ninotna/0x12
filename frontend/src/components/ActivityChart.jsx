@@ -1,133 +1,145 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+// Bar chart for user's activity
+
 import {
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Bar,
-  ResponsiveContainer,
-} from "recharts";
-import DataService from "../services/API/DataService";
-import SpinLoader from "./Loader/SpinLoader";
-import PropTypes from "prop-types";
+	BarChart,
+	CartesianGrid,
+	XAxis,
+	YAxis,
+	Tooltip,
+	Bar,
+	ResponsiveContainer,
+} from 'recharts'
 
-// Styled Components
-const ChartContainer = styled.div`
-  width: 835px;
-  height: 320px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.02);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
-const ChartHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-`;
+import DataService from '../services/API/DataService'
+import SpinLoader from './Loader/SpinLoader'
 
-const Title = styled.h3`
-  font-size: 15px;
-  font-weight: 500;
-`;
+export default function ActivityChart({ userId })
+{
+	const [data, setData] = useState(null)
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-const CaptionContainer = styled.div`
-  display: flex;
-  font-size: 15px;
-  font-weight: 500;
-`;
+	useEffect(() =>
+	{
+		async function fetchData()
+		{
+			try {
+				const result = await DataService.getUserActivity(userId)
+				if (result && result.sessions) {
+					const formattedData = result.sessions.map((session, index) => ({
+						day: index + 1,
+						kilogram: session.kilogram,
+						calories: session.calories,
+					}))
+					setData(formattedData)
+				} else {
+					throw new Error('Aucune donnée reçue')
+				}
+			} catch (err) {
+				setError(err)
+			} finally {
+				setIsLoading(false)
+			}
+		}
 
-const CaptionDot = styled.span`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 15px;
-  background-color: ${({ color }) => color};
-`;
+		fetchData()
+	}, [userId])
 
-const TooltipContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  font-size: 10px;
-  color: #fff;
-  background-color: #e60000;
-`;
+	if (error) {
+		return <div>Erreur de chargement...</div>
+	}
 
-// Tooltip personnalisé
-const CustomToolTip = ({ active, payload }) =>
-  active && payload ? (
-    <TooltipContainer>
-      <div>{`${payload[1].value} Kg`}</div>
-      <div>{`${payload[0].value} KCal`}</div>
-    </TooltipContainer>
-  ) : null;
+	return (
+		<div className="chart__dailyActivity">
+			{isLoading ? (
+				<SpinLoader />
+			) : (
+				<div className="dailyActivity">
+					<div className="dailyActivity__header">
+						<div className="dailyActivity__header--title">
+							<h3>Activité quotidienne</h3>
+						</div>
+						<div className="dailyActivity__header--caption">
+							<span className="dailyActivity__header--captionDotKg"></span>
+							<span className="dailyActivity__header--captionNameKg">
+								Poids (kg)
+							</span>
+							<span className="dailyActivity__header--captionDotCal"></span>
+							<span className="dailyActivity__header--captionNameCal">
+								Calories brûlées (kCal)
+							</span>
+						</div>
+					</div>
+					<div className="dailyActivity__barChart">
+						<ResponsiveContainer width="100%" height="100%">
+							<BarChart
+								data={data}
+								margin={{
+									top: 5,
+									right: 30,
+									left: 20,
+									bottom: 5,
+								}}
+							>
+								<CartesianGrid strokeDasharray="2" vertical={false} />
+								<XAxis
+									dataKey="day"
+									tickLine={false}
+									axisLine={false}
+									fontSize={15}
+									opacity={0.7}
+								/>
+								<YAxis
+									orientation="right"
+									tickLine={false}
+									axisLine={false}
+									fontSize={15}
+									opacity={0.7}
+								/>
+								<Tooltip content={<CustomToolTip />} />
+								<Bar
+									dataKey="kilogram"
+									fill="#282D30"
+									barSize={8}
+									radius={[50, 50, 0, 0]}
+								/>
+								<Bar
+									dataKey="calories"
+									fill="#E60000"
+									barSize={8}
+									radius={[50, 50, 0, 0]}
+								/>
+							</BarChart>
+						</ResponsiveContainer>
+					</div>
+				</div>
+			)}
+		</div>
+	)
+}
 
-CustomToolTip.propTypes = {
-  active: PropTypes.bool,
-  payload: PropTypes.array,
-};
-
-export default function ActivityChart({ userId }) {
-  const [activityData, setActivityData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchActivityData = async () => {
-      try {
-        const data = await DataService.getUserActivity(userId);
-        if (data) {
-          setActivityData(data.sessions);
-        } else {
-          throw new Error("Aucune donnée reçue.");
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchActivityData();
-  }, [userId]);
-
-  if (loading) return <SpinLoader />;
-  if (error) return <div>Erreur de chargement : {error}</div>;
-
-  return (
-    <ChartContainer>
-      <ChartHeader>
-        <Title>Activité quotidienne</Title>
-        <CaptionContainer>
-          <CaptionDot color="#282D30" />
-          <span>Poids (kg)</span>
-          <CaptionDot color="#E60000" />
-          <span>Calories brûlées (kCal)</span>
-        </CaptionContainer>
-      </ChartHeader>
-      <ResponsiveContainer width="100%" height="80%">
-        <BarChart data={activityData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="2" vertical={false} />
-          <XAxis dataKey="day"tickFormatter={(day) => new Date(day).getDate()} tickLine={false} axisLine={false} fontSize={15} opacity={0.7} />
-          <YAxis yAxisId="right" domain={[70,"dataMax"]} dataKey="kilogram" orientation="right" tickLine={false} axisLine={false} fontSize={15} opacity={0.7} />
-          <YAxis yAxisId="left" dataKey="calories" orientation="left" domain={[0, 500]} hide />
-          <Tooltip content={<CustomToolTip />} />
-          <Bar yAxisId="left" dataKey="calories" fill="#E60000" barSize={8} radius={[50, 50, 0, 0]} />
-          <Bar yAxisId="right" dataKey="kilogram" fill="#282D30" barSize={8} radius={[50, 50, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
-    </ChartContainer>
-  );
+function CustomToolTip({ active, payload })
+{
+	return active && payload ? (
+		<div className="dailyActivity__barChart--toolType">
+			<div className="dailyActivity__barChart--weight">
+				{`${payload[0].value} Kg`}
+			</div>
+			<div className="dailyActivity__barChart--calories">
+				{`${payload[1].value} KCal`}
+			</div>
+		</div>
+	) : null
 }
 
 ActivityChart.propTypes = {
-  userId: PropTypes.number.isRequired,
-};
+	userId: PropTypes.number.isRequired,
+}
+
+CustomToolTip.propTypes = {
+	active: PropTypes.bool,
+	payload: PropTypes.array,
+}
