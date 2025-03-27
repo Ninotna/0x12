@@ -26,7 +26,7 @@ export default function KeyData({ userId })
 					const user = await DataService.getUserData(userId)
 					console.log("📦 Données utilisateur récupérées :", user)
 		
-					const key = user?.data?.keyData ?? null
+					const key = user?.keyData ?? null
 		
 					if (key) {
 						setKeyData(key)

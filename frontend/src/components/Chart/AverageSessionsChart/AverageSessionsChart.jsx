@@ -31,9 +31,9 @@ export default function AverageSessionsChart({ userId })
 					const result = await DataService.getUserAverageSessions(userId)
 					console.log("📦 Données récupérées :", result)
 		
-					if (result && result.data && result.data.sessions) {
+					if (result && result.sessions) {
 						const dayMap = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
-						const formattedData = result.data.sessions.map((s, i) => ({
+						const formattedData = result.sessions.map((s, i) => ({
 							day: dayMap[i],
 							sessionLength: s.sessionLength,
 						}))

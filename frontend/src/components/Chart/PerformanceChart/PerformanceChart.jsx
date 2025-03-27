@@ -30,9 +30,9 @@ export default function PerformanceChart({ userId })
 					const result = await DataService.getUserPerformance(userId)
 					console.log("📦 Données récupérées :", result)
 		
-					if (result && result.data && result.data.kind) {
-						const kindMap = result.data.kind
-						const formatted = result.data.data.map((item) => ({
+					if (result && result.kind) {
+						const kindMap = result.kind
+						const formatted = result.data.map((item) => ({
 							kind: kindMap[item.kind],
 							value: item.value,
 						}))

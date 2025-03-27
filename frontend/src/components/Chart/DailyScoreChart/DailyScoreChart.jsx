@@ -23,7 +23,7 @@ export default function DailyScoreChart({ userId })
 					console.log("📦 Données utilisateur récupérées :", user)
 		
 					const scoreValue =
-						user?.data?.score ?? user?.data?.todayScore ?? null
+						user?.score ?? user?.todayScore ?? null
 		
 					if (scoreValue !== null) {
 						console.log("✅ Score détecté :", scoreValue)

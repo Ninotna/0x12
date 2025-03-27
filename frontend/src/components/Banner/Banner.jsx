@@ -21,7 +21,7 @@ export default function Banner({ userId })
 					const user = await DataService.getUserData(userId)
 					console.log("📦 Données utilisateur récupérées :", user)
 		
-					const name = user?.data?.userInfos?.firstName ?? null
+					const name = user?.userInfos?.firstName ?? null
 		
 					if (name) {
 						setFirstName(name)

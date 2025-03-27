@@ -31,8 +31,8 @@ export default function ActivityChart({ userId })
 					const result = await DataService.getUserActivity(userId)
 					console.log("📦 Données récupérées :", result)
 		
-					if (result && result.data && result.data.sessions) {
-						const formattedData = result.data.sessions.map((session, index) => ({
+					if (result && result.sessions) {
+						const formattedData = result.sessions.map((session, index) => ({
 							day: index + 1,
 							kilogram: session.kilogram,
 							calories: session.calories,
