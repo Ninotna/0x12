@@ -13,25 +13,35 @@ export default function Banner({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchUser()
 		{
-			try {
-				const user = await DataService.getUserData(userId)
-				if (user && user.userInfos && user.userInfos.firstName) {
-					setFirstName(user.userInfos.firstName)
-				} else {
-					throw new Error('Prénom introuvable')
+			async function fetchUser()
+			{
+				try {
+					console.log("📡 Récupération des infos utilisateur", userId)
+					const user = await DataService.getUserData(userId)
+					console.log("📦 Données utilisateur récupérées :", user)
+		
+					const name = user?.data?.userInfos?.firstName ?? null
+		
+					if (name) {
+						setFirstName(name)
+					} else {
+						console.error("❌ Prénom introuvable dans la réponse :", user)
+						throw new Error('Prénom introuvable')
+					}
 				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
+				catch (err) {
+					console.error("❌ Erreur dans fetchUser :", err)
+					setError(err)
+				}
+				finally {
+					setIsLoading(false)
+				}
 			}
-		}
-
-		fetchUser()
-	}, [userId])
+		
+			fetchUser()
+		}, [userId])
+		
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
