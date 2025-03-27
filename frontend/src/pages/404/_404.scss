@@ -1,3 +1,6 @@
+@use '../../styles/utils/variables' as *;
+@use '../../styles/utils/mixins' as *;
+
 .errorPage {
   width: 100%;
   display: flex;

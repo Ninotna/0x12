@@ -1,3 +1,6 @@
+@use '../../styles/utils/variables' as *;
+@use '../../styles/utils/mixins' as *;
+
 .dashboard {
   &__title {
     width: 100%;
