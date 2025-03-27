@@ -22,30 +22,43 @@ export default function PerformanceChart({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchData()
 		{
-			try {
-				const result = await DataService.getUserPerformance(userId)
-				if (result && result.data && result.kind) {
-					const kindMap = result.kind
-					const formatted = result.data.map((item) => ({
-						kind: kindMap[item.kind],
-						value: item.value,
-					}))
-					setData(formatted)
-				} else {
-					throw new Error('Aucune donnée de performance')
-				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
-			}
-		}
+			async function fetchData()
+			{
+				try {
+					console.log("📡 Récupération des performances pour l'utilisateur", userId)
+					const result = await DataService.getUserPerformance(userId)
+					console.log("📦 Données récupérées :", result)
+		
+					if (result && result.data && result.data.kind) {
+						const kindMap = result.data.kind
+						const formatted = result.data.data.map((item) => ({
+							kind: kindMap[item.kind],
+							value: item.value,
+						}))
+						setData(formatted)
 
-		fetchData()
-	}, [userId])
+// 						const { kind, data: perfData } = result.data
+// const formatted = perfData.map((item) => ({
+// 	kind: kind[item.kind],
+// 	value: item.value,
+// }))
+// setData(formatted)
+
+
+					} else {
+						throw new Error('Aucune donnée de performance')
+					}
+				} catch (err) {
+					console.error("❌ Erreur dans fetchData :", err)
+					setError(err)
+				} finally {
+					setIsLoading(false)
+				}
+			}
+		
+			fetchData()
+		}, [userId])
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
