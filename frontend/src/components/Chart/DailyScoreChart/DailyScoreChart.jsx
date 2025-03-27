@@ -14,28 +14,37 @@ export default function DailyScoreChart({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchData()
 		{
-			try {
-				const user = await DataService.getUserData(userId)
-				const scoreValue =
-					user?.score ?? user?.todayScore ?? null
-
-				if (scoreValue !== null) {
-					setData(scoreValue * 100)
-				} else {
-					throw new Error('Aucune donnée de score')
+			async function fetchData()
+			{
+				try {
+					console.log("📡 Récupération du score utilisateur", userId)
+					const user = await DataService.getUserData(userId)
+					console.log("📦 Données utilisateur récupérées :", user)
+		
+					const scoreValue =
+						user?.data?.score ?? user?.data?.todayScore ?? null
+		
+					if (scoreValue !== null) {
+						console.log("✅ Score détecté :", scoreValue)
+						setData(scoreValue * 100)
+					} else {
+						console.error("❌ Aucune clé 'score' ou 'todayScore' trouvée :", user)
+						throw new Error('Aucune donnée de score')
+					}
 				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
+				catch (err) {
+					console.error("❌ Erreur dans fetchData :", err)
+					setError(err)
+				}
+				finally {
+					setIsLoading(false)
+				}
 			}
-		}
-
-		fetchData()
-	}, [userId])
+		
+			fetchData()
+		}, [userId])
+		
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
