@@ -18,25 +18,35 @@ export default function KeyData({ userId })
 	const [error, setError] = useState(null)
 
 	useEffect(() =>
-	{
-		async function fetchUser()
 		{
-			try {
-				const user = await DataService.getUserData(userId)
-				if (user && user.keyData) {
-					setKeyData(user.keyData)
-				} else {
-					throw new Error('Données nutritionnelles manquantes')
+			async function fetchUser()
+			{
+				try {
+					console.log("📡 Récupération des keyData pour l'utilisateur", userId)
+					const user = await DataService.getUserData(userId)
+					console.log("📦 Données utilisateur récupérées :", user)
+		
+					const key = user?.data?.keyData ?? null
+		
+					if (key) {
+						setKeyData(key)
+					} else {
+						console.error("❌ Données nutritionnelles manquantes :", user)
+						throw new Error('Données nutritionnelles manquantes')
+					}
 				}
-			} catch (err) {
-				setError(err)
-			} finally {
-				setIsLoading(false)
+				catch (err) {
+					console.error("❌ Erreur dans fetchUser :", err)
+					setError(err)
+				}
+				finally {
+					setIsLoading(false)
+				}
 			}
-		}
-
-		fetchUser()
-	}, [userId])
+		
+			fetchUser()
+		}, [userId])
+		
 
 	if (error) {
 		return <div>Erreur de chargement...</div>
