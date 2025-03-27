@@ -1,34 +1,58 @@
 // Banner with user's firstname
 
-import useUser from '../../services/API/useUser'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+
+import DataService from '../../services/API/DataService'
 import SpinLoader from '../Loader/SpinLoader'
 
-export default function Banner({ userId }) {
-  // Grab states from custom Hook
-  // Using type + id to ensure calling the correct data modeling fct
-  const { isLoading, data, error } = useUser('firstName', userId)
+export default function Banner({ userId })
+{
+	const [firstName, setFirstName] = useState(null)
+	const [isLoading, setIsLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-  // Set firstname
-  let firstName = data
+	useEffect(() =>
+	{
+		async function fetchUser()
+		{
+			try {
+				const user = await DataService.getUserData(userId)
+				if (user && user.userInfos && user.userInfos.firstName) {
+					setFirstName(user.userInfos.firstName)
+				} else {
+					throw new Error('Prénom introuvable')
+				}
+			} catch (err) {
+				setError(err)
+			} finally {
+				setIsLoading(false)
+			}
+		}
 
-  // Manage error
-  if (error) {
-    return <div>Erreur de chargement...</div>
-  }
+		fetchUser()
+	}, [userId])
 
-  return (
-    <div className="dashboard__title">
-      {/* Manage loading datas */}
-      {isLoading ? (
-        <SpinLoader />
-      ) : (
-        <h1 className="dashboard__title--name">
-          Bonjour <span>{firstName}</span>
-        </h1>
-      )}
-      <h2 className="dashboard__title--caption">
-        Félicitation ! Vous avez explosé vos objectifs hier 👏
-      </h2>
-    </div>
-  )
+	if (error) {
+		return <div>Erreur de chargement...</div>
+	}
+
+	return (
+		<div className="dashboard__title">
+			{isLoading ? (
+				<SpinLoader />
+			) : (
+				<h1 className="dashboard__title--name">
+					Bonjour <span>{firstName}</span>
+				</h1>
+			)}
+			<h2 className="dashboard__title--caption">
+				Félicitation ! Vous avez explosé vos objectifs hier 👏
+			</h2>
+		</div>
+	)
+}
+
+Banner.propTypes = {
+	userId: PropTypes.number.isRequired,
 }
