@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 @mixin home-btn {
   width: 150px;
   border: 2px solid $colour-tertiary;
