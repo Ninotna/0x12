@@ -15,7 +15,7 @@ export default function Header() {
         <li>
           <NavLink
             // to={`/user/${userId}`}
-            to="/user/fake-id"
+            to="/user/id"
             className={(nav) =>
               nav.isActive ? 'header__link--active' : 'header__link'
             }
@@ -25,7 +25,7 @@ export default function Header() {
         </li>
         <li>
           <NavLink
-            to="/fake-profil"
+            to="/profil"
             className={(nav) =>
               nav.isActive ? 'header__link--active' : 'header__link'
             }
@@ -35,7 +35,7 @@ export default function Header() {
         </li>
         <li>
           <NavLink
-            to="/fake-setting"
+            to="/setting"
             className={(nav) =>
               nav.isActive ? 'header__link--active' : 'header__link'
             }
@@ -45,7 +45,7 @@ export default function Header() {
         </li>
         <li>
           <NavLink
-            to="/fake-community"
+            to="/community"
             className={(nav) =>
               nav.isActive ? 'header__link--active' : 'header__link'
             }
