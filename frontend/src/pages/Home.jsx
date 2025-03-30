@@ -116,7 +116,7 @@ export default function Home() {
           <Button type="submit" $submit={true}>Submit</Button>
         </ButtonGroup>
         <InfoText>
-          (Pour utiliser les datas dupliquées, rajouter un "0" à votre userId)
+          (Les données mockées correspondent aux userId 12 et 18)
         </InfoText>
       </Form>
     </Page>

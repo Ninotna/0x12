@@ -1,5 +1,11 @@
 @use './variables' as *;
 
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin home-btn {
   width: 150px;
   border: 2px solid $colour-tertiary;

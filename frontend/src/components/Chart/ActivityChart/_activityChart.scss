@@ -5,6 +5,7 @@
   &__dailyActivity {
     width: 835px;
     height: 320px;
+    margin: 0px;
     .dailyActivity {
       width: 100%;
       height: 100%;
@@ -12,6 +13,7 @@
       flex-direction: column;
       border-radius: $border-rad;
       background-color: rgba(0, 0, 0, 0.02);
+      margin-top: 0px;
       &__header {
         width: 100%;
         display: flex;

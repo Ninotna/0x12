@@ -2,19 +2,21 @@
 @use '../../styles/utils/mixins' as *;
 
 .aside {
-  width: 120px;
+  max-width: 117px;
   // height: 100vh;
   display: flex;
   flex-direction: column;
-  margin: -100px 0px 0px 0px;
+  justify-content: space-between; // Espace entre les blocs
+  align-items: center; // Centrer horizontalement les éléments
+  margin: 0px 0px 0px 0px;
   padding-top: 100px;
   background-color: black;
   position: relative;
   &__links {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    padding: 0px;
+    gap: 20px;
+    padding: 147px 25px 10px 25px;
     list-style: none;
   }
   &__link {
@@ -46,12 +48,16 @@
     }
   }
   &__ref {
-    color: white;
-    transform: rotate(270deg);
-    position: absolute;
-    bottom: 105px;
-    left: -17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; // Centrer le texte si nécessaire
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 12px;
+    color: white;
+    padding: 10px; // Ajout d'un peu d'espace autour du texte
+    writing-mode: vertical-rl; // Écrit le texte verticalement
+    transform: rotate(180deg); // Inverse le sens pour une lecture naturelle
+    margin-bottom: 59px;
   }
 }
