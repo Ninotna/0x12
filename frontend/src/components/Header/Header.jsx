@@ -25,7 +25,7 @@ export default function Header() {
         </li>
         <li>
           <NavLink
-            to="/profil"
+            to="/profile"
             className={(nav) =>
               nav.isActive ? 'header__link--active' : 'header__link'
             }
