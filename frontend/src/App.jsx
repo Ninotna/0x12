@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile/:id" element={<Dashboard />} />
-        <Route path="/profil" element={<Error404 />} />
+        <Route path="/profile" element={<Home />} />
         <Route path="/setting" element={<Error404 />} />
         <Route path="/community" element={<Error404 />} />
         <Route path="/profile" element={<Error404 />} />
