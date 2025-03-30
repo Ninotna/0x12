@@ -27,9 +27,9 @@ export default function ActivityChart({ userId })
 			async function fetchData()
 			{
 				try {
-					console.log("📡 Récupération de l'activité pour l'utilisateur", userId)
+					// console.log("📡 Récupération de l'activité pour l'utilisateur", userId)
 					const result = await DataService.getUserActivity(userId)
-					console.log("📦 Données récupérées :", result)
+					// console.log("📦 Données récupérées :", result)
 		
 					if (result && result.sessions) {
 						const formattedData = result.sessions.map((session, index) => ({
@@ -37,7 +37,7 @@ export default function ActivityChart({ userId })
 							kilogram: session.kilogram,
 							calories: session.calories,
 						}))
-						console.log("📊 Données formatées :", formattedData)
+						// console.log("📊 Données formatées :", formattedData)
 						setData(formattedData)
 					} else {
 						console.error("❌ Structure inattendue :", result)

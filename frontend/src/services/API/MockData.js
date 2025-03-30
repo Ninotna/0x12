@@ -134,10 +134,10 @@ const USER_MAIN_DATA = [
    */
   export function getMockUserData(userId) {
     const numericUserId = Number(userId);
-    console.log("📢 Chargement des données utilisateur pour", numericUserId);
+    // console.log("📢 Chargement des données utilisateur pour", numericUserId);
     
     const user = USER_MAIN_DATA.find((user) => user.id === numericUserId) || null;
-    console.log(user ? "✅ Utilisateur trouvé" : "❌ Aucun utilisateur trouvé", user);
+    // console.log(user ? "✅ Utilisateur trouvé" : "❌ Aucun utilisateur trouvé", user);
     
     return user;
   }

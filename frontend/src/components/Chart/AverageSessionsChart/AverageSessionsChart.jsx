@@ -27,9 +27,9 @@ export default function AverageSessionsChart({ userId })
 			async function fetchData()
 			{
 				try {
-					console.log("📡 Récupération des sessions moyennes pour l'utilisateur", userId)
+					// console.log("📡 Récupération des sessions moyennes pour l'utilisateur", userId)
 					const result = await DataService.getUserAverageSessions(userId)
-					console.log("📦 Données récupérées :", result)
+					// console.log("📦 Données récupérées :", result)
 		
 					if (result && result.sessions) {
 						const dayMap = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
@@ -37,7 +37,7 @@ export default function AverageSessionsChart({ userId })
 							day: dayMap[i],
 							sessionLength: s.sessionLength,
 						}))
-						console.log("📊 Données formatées :", formattedData)
+						// console.log("📊 Données formatées :", formattedData)
 						setData(formattedData)
 					} else {
 						console.error("❌ Structure inattendue :", result)

@@ -40,7 +40,7 @@ export default function Header() {
               nav.isActive ? 'header__link--active' : 'header__link'
             }
           >
-            Réglage
+            Réglages
           </NavLink>
         </li>
         <li>

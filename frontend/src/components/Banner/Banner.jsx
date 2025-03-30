@@ -17,9 +17,9 @@ export default function Banner({ userId })
 			async function fetchUser()
 			{
 				try {
-					console.log("📡 Récupération des infos utilisateur", userId)
+					// console.log("📡 Récupération des infos utilisateur", userId)
 					const user = await DataService.getUserData(userId)
-					console.log("📦 Données utilisateur récupérées :", user)
+					// console.log("📦 Données utilisateur récupérées :", user)
 		
 					const name = user?.userInfos?.firstName ?? null
 		

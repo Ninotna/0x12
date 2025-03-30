@@ -22,9 +22,9 @@ export default function KeyData({ userId })
 			async function fetchUser()
 			{
 				try {
-					console.log("📡 Récupération des keyData pour l'utilisateur", userId)
+					// console.log("📡 Récupération des keyData pour l'utilisateur", userId)
 					const user = await DataService.getUserData(userId)
-					console.log("📦 Données utilisateur récupérées :", user)
+					// console.log("📦 Données utilisateur récupérées :", user)
 		
 					const key = user?.keyData ?? null
 		

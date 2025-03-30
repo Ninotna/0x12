@@ -3,7 +3,7 @@ import { getMockUserData, getMockUserActivity, getMockUserAverageSessions, getMo
 
 const API_URL = "http://localhost:3000";
 const useMockData = import.meta.env.VITE_MOCKED_DATA === "true";
-console.log("✅ Mode mock activé :", useMockData);
+// console.log("✅ Mode mock activé :", useMockData);
 
 const DataService = {
   /**
@@ -37,7 +37,7 @@ const DataService = {
         // console.log("Utilisation des données mockées pour l'activité de l'utilisateur", userId);
         return await getMockUserActivity(userId);
       }
-      console.log("Requête API pour l'activité de l'utilisateur", userId);
+      // console.log("Requête API pour l'activité de l'utilisateur", userId);
       const response = await axios.get(`${API_URL}/user/${userId}/activity`);
       return response.data.data;
     } catch (error) {
