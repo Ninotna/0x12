@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import DataService from "../services/API/DataService";
+import DataService from "../../services/API/DataService";
 import ProfileHeader from "../components/ProfileHeader";
 import ActivityChart from "../components/ActivityChart";
 import DailyScoreChart from "../components/DailyScoreChart";
@@ -9,7 +9,7 @@ import PerformanceChart from "../components/PerformanceChart";
 import AverageSessionsChart from "../components/AverageSessionsChart";
 import Aside from "../components/Aside";
 import KeyData from "../components/KeyDatas";
-import SpinLoader from "../components/Loader/SpinLoader";
+import SpinLoader from "../../components/Loader/SpinLoader";
 
 // Styled Components
 const PageWrapper = styled.div`
