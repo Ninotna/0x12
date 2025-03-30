@@ -26,9 +26,7 @@ export default function PerformanceChart({ userId })
 			async function fetchData()
 			{
 				try {
-					// console.log("📡 Récupération des performances pour l'utilisateur", userId)
 					const result = await DataService.getUserPerformance(userId)
-					// console.log("📦 Données récupérées :", result)
 		
 					if (result && result.kind) {
 						const kindMap = result.kind

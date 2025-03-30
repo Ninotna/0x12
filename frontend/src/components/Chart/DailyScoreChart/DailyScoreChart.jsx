@@ -18,15 +18,12 @@ export default function DailyScoreChart({ userId })
 			async function fetchData()
 			{
 				try {
-					// console.log("📡 Récupération du score utilisateur", userId)
 					const user = await DataService.getUserData(userId)
-					// console.log("📦 Données utilisateur récupérées :", user)
 		
 					const scoreValue =
 						user?.score ?? user?.todayScore ?? null
 		
 					if (scoreValue !== null) {
-						// console.log("✅ Score détecté :", scoreValue)
 						setData(scoreValue * 100)
 					} else {
 						console.error("❌ Aucune clé 'score' ou 'todayScore' trouvée :", user)
