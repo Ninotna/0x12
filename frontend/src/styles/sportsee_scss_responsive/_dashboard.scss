@@ -1,0 +1,111 @@
+.dashboard {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 60px 50px 0 100px;
+	display: flex;
+	flex-direction: row;
+
+	@media (max-width: 1024px) {
+		flex-direction: column;
+		padding: 20px;
+	}
+
+	&__content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		@media (max-width: 1024px) {
+			padding: 0;
+		}
+	}
+
+	&__datas {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		margin-top: 30px;
+		width: 100%;
+
+		&--top-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 2rem;
+
+			.chart--activity {
+				width: 75%;
+			}
+
+			.keyData {
+				display: flex;
+				flex-direction: column;
+				align-items: center; // ✅ centre les enfants horizontalement
+				justify-content: center;
+				gap: 2rem;
+				width: 100%;
+			}
+
+			@media (max-width: 1024px) {
+				flex-direction: column;
+
+				.chart--activity,
+				.keyData {
+					width: 100%;
+				}
+			}
+		}
+
+		&--charts {
+			display: flex;
+			flex-direction: column;
+			gap: 28px;
+			width: 100%;
+		}
+	}
+}
+
+.chart__activityDetails {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	gap: 20px;
+	margin: 0;
+
+	> * {
+		flex: 1 1 30%;
+		min-width: 250px;
+		height: 263px;
+
+		@media (max-width: 1024px) {
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+.keyData {
+	width: 100%;
+
+	@media (min-width: 1025px) {
+		width: 20%;
+		max-width: 240px;
+	}
+}
+
+.chart--activity,
+.chart--average,
+.chart--performance,
+.chart--score {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}

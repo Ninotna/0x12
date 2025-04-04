@@ -1,0 +1,14 @@
+
+.chart__activity {
+  width: 100%;
+  height: auto;
+  background-color: $colour-tertiary;
+  border-radius: $border-rad;
+  overflow: hidden;
+
+  .activityChart {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+}

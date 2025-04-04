@@ -1,7 +1,7 @@
 // Navbar component
 
-import { NavLink } from 'react-router-dom'
-import Logo from '../../assets/logo/logo.svg'
+import { NavLink } from "react-router-dom";
+import Logo from "../../assets/logo/logo.svg";
 
 export default function Header() {
   return (
@@ -16,8 +16,8 @@ export default function Header() {
           <NavLink
             // to={`/user/${userId}`}
             to="/user/id"
-            className={(nav) =>
-              nav.isActive ? 'header__link--active' : 'header__link'
+            className={({ isActive }) =>
+              `header__link${isActive ? " header__link--active" : ""}`
             }
           >
             Accueil
@@ -26,8 +26,8 @@ export default function Header() {
         <li>
           <NavLink
             to="/profile"
-            className={(nav) =>
-              nav.isActive ? 'header__link--active' : 'header__link'
+            className={({ isActive }) =>
+              `header__link${isActive ? " header__link--active" : ""}`
             }
           >
             Profil
@@ -36,8 +36,8 @@ export default function Header() {
         <li>
           <NavLink
             to="/setting"
-            className={(nav) =>
-              nav.isActive ? 'header__link--active' : 'header__link'
+            className={({ isActive }) =>
+              `header__link${isActive ? " header__link--active" : ""}`
             }
           >
             Réglages
@@ -46,8 +46,8 @@ export default function Header() {
         <li>
           <NavLink
             to="/community"
-            className={(nav) =>
-              nav.isActive ? 'header__link--active' : 'header__link'
+            className={({ isActive }) =>
+              `header__link${isActive ? " header__link--active" : ""}`
             }
           >
             Communauté
@@ -55,5 +55,5 @@ export default function Header() {
         </li>
       </ul>
     </header>
-  )
+  );
 }

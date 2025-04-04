@@ -7,8 +7,12 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		margin-top: 0;
-		padding: 60px 50px 0 100px;
+		margin: 0 0 100px 0;
+		padding-top: clamp(2rem, 6vh, 4rem);
+		padding-right: clamp(1.5rem, 4vw, 3rem);
+		padding-left: clamp(2rem, 6vw, 6rem);
+		padding-bottom: 0;
+		
 
 		@media (max-width: 1024px) {
 			padding: 20px;
@@ -17,11 +21,83 @@
 
 	&__datas {
 		display: flex;
-		gap: 31px;
+		flex-direction: column;
+		gap: 2rem;
 		margin-top: 0;
+		width: 100%;
 
-		@media (max-width: 1024px) {
-			flex-direction: column;
+		.dashboard__datas--top-row {
+			display: flex;
+			align-items: flex-start;
+			gap: 2rem;
+			width: 100%;
+
+			.chart--activity-wrapper {
+				width: calc(100% - 260px - 2rem);
+				max-width: calc(100% - 260px - 2rem);
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+
+			.chart--activity {
+				width: 100%;
+			}
+
+			.chart__activityDetails {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				gap: 1.5rem;
+			
+				> * {
+					flex: 1 1 0;
+					min-width: 0;
+					width: 100%;
+					height: auto;
+				}
+			
+				@media (max-width: 1024px) {
+					flex-direction: column;
+					align-items: stretch;
+			
+					> * {
+						width: 100%;
+						min-width: 0;
+						height: auto;
+					}
+				}
+			}
+			
+
+			.keyData {
+				width: 260px;
+				flex-shrink: 0;
+			}
+
+			@media (max-width: 1024px) {
+				flex-direction: column;
+
+				.chart--activity-wrapper,
+				.keyData {
+					width: 100%;
+					max-width: 100%;
+				}
+
+				.chart__activityDetails {
+					flex-direction: column;
+					align-items: stretch;
+					gap: 1.5rem;
+
+					> * {
+						width: 100%;
+						max-width: 100%;
+						min-width: 0;
+						height: auto;
+						min-height: 200px;
+					}
+				}
+			}
 		}
 
 		&--charts {
@@ -31,28 +107,10 @@
 			width: 100%;
 		}
 	}
+	
 }
 
-.chart__activityDetails {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	gap: 20px;
-	margin: 0;
-
-	> * {
-		flex: 1 1 30%;
-		min-width: 260px;
-		height: 263px;
-
-		@media (max-width: 1024px) {
-			width: 100%;
-		}
-	}
-
-	@media (max-width: 1024px) {
-		flex-direction: column;
-		align-items: stretch;
-	}
-}
+// .chart__activityDetails > * {
+// 	border: 2px dashed red !important;
+// 	min-height: 100px !important;
+// }

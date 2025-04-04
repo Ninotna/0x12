@@ -3,49 +3,31 @@
 
 .keyDatas {
 	&__nutrition {
-		width: 258px;
-		height: 613px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		margin: 0 90px 0 0;
-
-		@media (max-width: 1024px) {
-			width: 100%;
-			height: auto;
-			margin: 40px 0 0 0;
-			gap: 1rem;
-		}
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		margin: 0;
 
 		&--cards {
 			width: 100%;
-			height: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			justify-content: space-between;
-
-			@media (max-width: 1024px) {
-				flex-direction: row;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				gap: 1rem;
-			}
+			justify-content: center;
+			gap: 1.5rem;
 
 			.nutrition__card {
-				width: 258px;
+				width: 100%;
 				height: 124px;
 				display: flex;
 				align-items: center;
-				margin: 0;
+				gap: 1rem;
+				// padding: 1rem;
 				border-radius: $border-rad;
 				background-color: $colour-bgLight;
-
-				@media (max-width: 1024px) {
-					width: 48%;
-					min-width: 150px;
-					flex: 1 1 auto;
-				}
 
 				&--iconCalorie {
 					@include keyDataIconCalorie;
@@ -59,14 +41,15 @@
 				&--iconFat {
 					@include keyDataIconFat;
 				}
+
 				&--detail {
-					height: 60px;
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
-					gap: 5px;
+					gap: 0.25rem;
 					margin: 0;
 				}
+
 				&--count {
 					font-size: 20px;
 					font-weight: 600;
