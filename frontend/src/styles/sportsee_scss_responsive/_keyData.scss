@@ -1,0 +1,21 @@
+
+.keydata {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  width: 100%;
+
+  @media (min-width: 1025px) {
+    max-width: 240px;
+  }
+
+  .nutrition__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 124px;
+    background-color: $colour-bgLight;
+    border-radius: $border-rad;
+    padding: 1rem;
+  }
+}
